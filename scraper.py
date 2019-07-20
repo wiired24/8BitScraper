@@ -1,5 +1,9 @@
 # import dependencies needed to download an HTML file and parse it.
-import urllib.request
+# urllib specifically is imported with Py2 and Py3 cross-compatibility in mind.
+try:
+    import urllib.request as urlrequest
+except ImportError:
+    import urllib as urlrequest
 from bs4 import BeautifulSoup
 import sys
 
@@ -7,7 +11,7 @@ import sys
 base_search = "https://thegamesdb.net/search.php?platform_id%5B%5D=0&name="
 
 def get_html_search(searchterm):
-    search_page = urllib.request.urlopen(base_search + searchterm)
+    search_page = urlrequest.urlopen(base_search + searchterm)
     html = BeautifulSoup(search_page, "html.parser")
     print(html)
 
