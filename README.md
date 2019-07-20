@@ -3,7 +3,7 @@
 
 Just run ``` python scraper.py game```
 
-![Alt text](https://images-na.ssl-images-amazon.com/images/I/81pr2VEJ2DL.jpg "BoxArt" | width=460 )
+![Alt text](https://images-na.ssl-images-amazon.com/images/I/81pr2VEJ2DL.jpg)
 
 
 
