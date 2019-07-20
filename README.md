@@ -1,2 +1,2 @@
 # 8BitScraper
-8BitScraper is a Retro Video Game Box Art Web Scraper built in Python 
+8BitScraper is a retro video game box art web scraper built in Python 
