@@ -29,7 +29,8 @@ def get_html_search(searchterm):
     print(html)
     
 def parse_html_search():
-    # I'm thinking a for loop might come in handy here ;)
+    # I'm thinking a for loop might come in handy here
+    # to parse through the html page data ;)
     html = get_html_search(sys.argv[1])  
     save_art(url,filename)
     
