@@ -1,13 +1,24 @@
 # import dependencies needed to download an HTML file and parse it.
 # urllib specifically is imported with Py2 and Py3 cross-compatibility in mind.
+import pip
 try:
     import urllib.request as urlrequest
 except ImportError:
     import urllib as urlrequest
-from bs4 import BeautifulSoup
-import sys
-import requests
-import os
+try:
+    from bs4 import BeautifulSoup
+    import sys
+    import requests
+    import os
+except ImportError:
+    with open("requirements.txt") as f:
+        for line in f:
+            # call pip's main function with each requirement
+            pip.main(['install','-U', line])
+    from bs4 import BeautifulSoup
+    import sys
+    import requests
+    import os
 
 # thegamesdb.net base URLs (Searching, platform listing, anything else needed)
 base_search = "https://thegamesdb.net/search.php?platform_id%5B%5D=0&name="
