@@ -28,6 +28,11 @@ def get_html_search(searchterm):
     html = BeautifulSoup(search_page, "html.parser")
     print(html)
     
+def parse_html_search():
+    # I'm thinking a for loop might come in handy here ;)
+    html = get_html_search(sys.argv[1])  
+    save_art(url,filename)
+    
 def save_art(url, filename):
     #wget.download(url, filename)
     
