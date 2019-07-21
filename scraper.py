@@ -29,10 +29,10 @@ def get_html_search(searchterm):
     print(html)
     
 def parse_html_search():
-    # I'm thinking a for loop might come in handy here
-    # to parse through the html page data ;)
-    html = get_html_search(sys.argv[1])  
-    save_art(url,filename)
+    html = get_html_search(sys.argv[1])
+    parsing_array = html.find_all('img', src=re.compile(r'https://cdn.thegamesdb.net/images/thumb/boxart/'))
+    print(parsing_array)
+    #save_art(url,filename)
     
 def save_art(url, filename):
     #wget.download(url, filename)
@@ -54,5 +54,6 @@ if len(sys.argv) < 2:
     print("Usage: scraper.py <search term>")
     sys.exit()
 get_html_search(sys.argv[1])
+parse_html_search()
 save_art(sys.argv[2], "test.png")
 open_art("test.png")
