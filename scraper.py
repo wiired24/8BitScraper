@@ -23,17 +23,23 @@ except ImportError:
 # thegamesdb.net base URLs (Searching, platform listing, anything else needed)
 base_search = "https://thegamesdb.net/search.php?platform_id%5B%5D=0&name="
 
+# Takes a search word as input, the word is then paired with the base URL
+# in order to collect HTML Text Data via BS4
 def get_html_search(searchterm):
     search_page = urlrequest.urlopen(base_search + searchterm)
     html = BeautifulSoup(search_page, "html.parser")
     print(html)
-    
+
+# Using the search term provided by the user, looks through each 'img' tag
+# to find & add corresponding URL's which will be used for downloading boxart
 def parse_html_search():
     html = get_html_search(sys.argv[1])
     parsing_array = html.find_all('img', src=re.compile(r'https://cdn.thegamesdb.net/images/thumb/boxart/'))
     print(parsing_array)
     #save_art(url,filename)
-    
+
+# This function has only two args. One for "url", one for "filename". 
+# It's sole purpose is to download boxart images
 def save_art(url, filename):
     #wget.download(url, filename)
     
