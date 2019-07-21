@@ -24,7 +24,7 @@ except ImportError:
 base_search = "https://thegamesdb.net/search.php?platform_id%5B%5D=0&name="
 
 # Takes a search word as input, the word is then paired with the base URL
-# in order to collect HTML Text Data via BS4
+# in order to collect HTML Text Data via BeautifulSoup
 def get_html_search(searchterm):
     search_page = urlrequest.urlopen(base_search + searchterm)
     html = BeautifulSoup(search_page, "html.parser")
@@ -32,17 +32,14 @@ def get_html_search(searchterm):
 
 # Using the search term provided by the user, looks through each 'img' tag
 # to find & add corresponding URL's which will be used for downloading boxart
-def parse_html_search():
-    html = get_html_search(sys.argv[1])
+def parse_html_search(term):
+    html = get_html_search(term)
     parsing_array = html.find_all('img', src=re.compile(r'https://cdn.thegamesdb.net/images/thumb/boxart/'))
     print(parsing_array)
     #save_art(url,filename)
 
-# This function has only two args. One for "url", one for "filename". 
-# It's sole purpose is to download boxart images
+# This function's sole purpose is to download boxart images using the url provided to the filename provided
 def save_art(url, filename):
-    #wget.download(url, filename)
-    
     # TheGamesDB blocks urlopen, so we need to use an alternative method
     
     # Get the art via the URL
@@ -60,6 +57,6 @@ if len(sys.argv) < 2:
     print("Usage: scraper.py <search term>")
     sys.exit()
 get_html_search(sys.argv[1])
-parse_html_search()
-save_art(sys.argv[2], "test.png")
-open_art("test.png")
+parse_html_search(sys.argv[1])
+#save_art(sys.argv[2], "test.png")
+#open_art("test.png")
