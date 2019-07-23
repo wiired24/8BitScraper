@@ -10,7 +10,6 @@ try:
     import sys
     import requests
     import os
-    import re
 except ImportError:
     with open("requirements.txt") as f:
         for line in f:
@@ -20,6 +19,7 @@ except ImportError:
     import sys
     import requests
     import os
+    import re
 
 
 # thegamesdb.net base URLs (Searching, platform listing, anything else needed)
@@ -28,6 +28,7 @@ base_search = "https://thegamesdb.net/search.php?platform_id%5B%5D=0&name="
 def get_html_search(searchterm):
     search_page = urlrequest.urlopen(base_search + searchterm)
     html = BeautifulSoup(search_page, "html.parser")
+    return html
    #print(html)
 
 def parse_html_search(term):
@@ -35,6 +36,7 @@ def parse_html_search(term):
     parsing_array = html.find_all('img', src=re.compile(r'https://cdn.thegamesdb.net/images/thumb/boxart/'))
     #save_art(url,filename)
     print(parsing_array)
+    
 
 def save_art(url, filename):
     #wget.download(url, filename)
