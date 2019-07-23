@@ -35,9 +35,9 @@ def get_html_search(searchterm):
 def parse_html_search(term):
     html = get_html_search(term)
     parsing_array = html.find_all('img', src=re.compile(r'https://cdn.thegamesdb.net/images/thumb/boxart/'))
-    #save_art(url,filename)
-    print(parsing_array)
-    
+    art_url = parsing_array[0]['src']
+    print(art_url)
+    return art_url
 
 def save_art(url, filename):
     #wget.download(url, filename)
@@ -55,11 +55,10 @@ def save_art(url, filename):
 def open_art(filename):
     os.startfile(filename)
 
-if len(sys.argv) < 2:
-    print("Usage: scraper.py <search term>")
+if len(sys.argv) < 3:
+    print("Usage: scraper.py <search term> <filename to save to>")
     sys.exit()
-get_html_search(sys.argv[1])
-parse_html_search(sys.argv[1])
-#save_art(sys.argv[2], "test.png")
-#open_art("test.png")
-
+    
+boxart_url = parse_html_search(sys.argv[1])
+save_art(boxart_url, sys.argv[2])
+open_art(sys.argv[2])
