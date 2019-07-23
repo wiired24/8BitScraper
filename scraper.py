@@ -10,6 +10,7 @@ try:
     import sys
     import requests
     import os
+    import re
 except ImportError:
     with open("requirements.txt") as f:
         for line in f:
@@ -26,8 +27,8 @@ except ImportError:
 base_search = "https://thegamesdb.net/search.php?platform_id%5B%5D=0&name="
 
 def get_html_search(searchterm):
-    search_page = urlrequest.urlopen(base_search + searchterm)
-    html = BeautifulSoup(search_page, "html.parser")
+    search_page = requests.get(base_search + searchterm)
+    html = BeautifulSoup(search_page.content, "html.parser")
     return html
    #print(html)
 
