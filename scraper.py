@@ -11,6 +11,7 @@ try:
     import requests
     import os
     import re
+    from PIL import Image
 except ImportError:
     with open("requirements.txt") as f:
         for line in f:
@@ -21,7 +22,7 @@ except ImportError:
     import requests
     import os
     import re
-
+    from PIL import Image
 
 # thegamesdb.net base URLs (Searching, platform listing, anything else needed)
 base_search = "https://thegamesdb.net/search.php?platform_id%5B%5D=0&name="
@@ -53,12 +54,16 @@ def save_art(url, filename):
         f.close()
 
 def open_art(filename):
-    os.startfile(filename)
+    try:
+        os.startfile(filename)
+    except AttributeError:
+        im = Image.open(filename)
+        im.show()
 
 if len(sys.argv) < 3:
     print("Usage: scraper.py <search term> <filename to save to>")
     sys.exit()
-    
+
 boxart_url = parse_html_search(sys.argv[1])
 save_art(boxart_url, sys.argv[2])
 open_art(sys.argv[2])
