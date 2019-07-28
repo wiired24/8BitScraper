@@ -54,11 +54,11 @@ def save_art(url, filename):
         f.close()
 
 def open_art(filename):
-    try:
-        os.startfile(filename)
-    except AttributeError:
-        im = Image.open(filename)
-        im.show()
+        # Saves the Image file and resizes to thumbnail dimensions automatically
+        img = Image.open(filename)
+        new_img = img.resize((250,250))
+        new_img.save(filename, "PNG", optimize=True)
+        new_img.show()
 
 if len(sys.argv) < 3:
     print("Usage: scraper.py <search term> <filename to save to>")
