@@ -54,7 +54,7 @@ def save_art(url, filename):
         f.close()
 
 def open_art(filename):
-        # Saves the Image file and resizes to thumbnail dimensions automatically
+        # Saves the Image file and resizes to 250x250 automatically
         img = Image.open(filename)
         new_img = img.resize((250,250))
         new_img.save(filename, "PNG", optimize=True)
