@@ -2,7 +2,7 @@
 8BitScraper is a retro video game box art web scraper built in Python.
 
 # Demo
-![GIF example](https://s3.gifyu.com/images/ezgif.com-video-to-gif165ad3412e287e8c.gif)
+![pic](https://imgur.com/a/O0cMIZB)
 
 # Usage
 
